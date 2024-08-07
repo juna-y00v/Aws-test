@@ -1,0 +1,26 @@
+name: CI1
+
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: macos-latest # 3 실행 환경 지정
+    env:
+      working-directory: ./test
+    #4 실행스텝지정
+    steps:
+      - uses: actions/checkout@v4.1.7
+
+      - uses: actions/setup-java@v4.2.1
+        with:
+          distribution: 'corretto'
+          java-version: '22'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        working-directory: ${{ env.working-directory }}
+
+      - name: Build with Gradle
+        run: ./gradlew clean build
+        working-directory: ${{ env.working-directory }}
