@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
 jobs:
   build:
-    runs-on: macos-latest # 3 실행 환경 지정
+    runs-on: ubuntu-latest # 3 실행 환경 지정
     env:
       working-directory: ./test
     #4 실행스텝지정
@@ -27,7 +27,7 @@ jobs:
 
          # DockerHub 로그인
       - name: DockerHub Login
-        uses: docker/login-action@v3.2.0
+        uses: docker/login-action@v3.3.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
